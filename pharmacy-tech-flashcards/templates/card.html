@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pharmacy Tech Flashcards</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 2em auto; }
+    .card { padding: 1.5em; border: 1px solid #ccc; border-radius: 8px; }
+    .question { font-size: 1.2em; margin-bottom: 1em; }
+    .answer { margin-top: 1em; font-weight: bold; color: #2c3e50; }
+    .details { margin-top: 0.5em; font-style: italic; color: #555; }
+    form { margin-top: 2em; }
+    button { padding: 0.5em 1em; margin-right: 1em; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="question"><strong>Q{{ card_id + 1 }} / {{ total }}:</strong> {{ card.question }}</div>
+
+    {% if show_answer %}
+      <div class="answer">Answer: {{ card.answer }}</div>
+      {% if card.details %}
+        <div class="details">Details: {{ card.details }}</div>
+      {% endif %}
+    {% endif %}
+
+    <form method="post">
+      {% if not show_answer %}
+        <button name="action" value="Show Answer">Show Answer</button>
+      {% else %}
+        <button name="action" value="Previous" {% if card_id == 0 %}disabled{% endif %}>Previous</button>
+        <button name="action" value="Next" {% if card_id == total -1 %}disabled{% endif %}>Next</button>
+      {% endif %}
+    </form>
+  </div>
+</body>
+</html>
+

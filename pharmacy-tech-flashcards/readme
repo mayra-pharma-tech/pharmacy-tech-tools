@@ -1,0 +1,161 @@
+################################################################
+################################################################
+
+# how to install and run the Pharmacy Tech Flashcard app on both MacBook and WinHow 
+# Pharmacy Technician Flashcards (Flask App)
+
+An interactive flashcard web app to help **pharmacy technician students** prepare for exams.  
+It loads questions, answers, and study details from `pharmacy_flashcards.csv` and displays them one by one in a simple browser interface.
+
+---
+
+## Features
+- Study **pharmacy technician exam flashcards** on your browser.
+- View **answers and additional study notes** for each question.
+- Navigate between questions easily with **Next** and **Previous** buttons.
+- Runs locally on your computer (no internet required after setup).
+
+---
+
+## Requirements
+- **Python 3.8+** installed.
+- **Flask** web framework.
+- `pharmacy_flashcards.csv` file (included).
+
+---
+
+################################################################
+## Installation (Mac & Windows)
+
+### 1. Clone the repository
+```bash
+git clone https://gitlab.com/<your-username>/pharmacy-tech-flashcards.git
+cd pharmacy-tech-flashcards
+2. Set up a virtual environment (recommended)
+
+################################################################
+##On Mac/Linux:
+
+python3 -m venv venv
+source venv/bin/activate
+On Windows (PowerShell):
+
+python -m venv venv
+.\venv\Scripts\activate
+3. Install dependencies
+pip install flask
+Running the App
+
+Make sure your project structure looks like this:
+pharmacy-tech-flashcards/
+    app.py
+    pharmacy_flashcards.csv
+    templates/
+        card.html
+Start the Flask server:
+python app.py
+Open your browser and go to:
+http://127.0.0.1:5000/
+Start studying! Use Show Answer, Next, and Previous to navigate flashcards.
+Editing Flashcards
+
+Open pharmacy_flashcards.csv in Excel or a text editor.
+Add questions as:
+Question,Answer,Details
+What is the generic name of Tylenol?,Acetaminophen,Acetaminophen is a common pain reliever and fever reducer.
+Save and refresh the app.
+Stopping the App
+
+Press CTRL + C in the terminal to stop the server.
+
+Contributing
+##
+Feel free to fork this project and add:
+
+More flashcards
+Categories or difficulty levels
+Quiz scoring
+Pull requests welcome!
+
+License
+
+MIT License – Free to use and modify.
+
+
+---
+
+
+
+
+######################################################    Docker Setup:  ################################################################
+Using Docker (No Python Setup Needed)
+
+Make sure you have Docker installed (Download Docker).
+Build the container:
+docker build -t pharmacy-flashcards .
+Run the container:
+docker run -p 5000:5000 pharmacy-flashcards
+Open in your browser:
+http://127.0.0.1:5000/
+Deploy to GitLab Pages (Free Hosting)
+
+Add a .gitlab-ci.yml file to your repository:
+image: python:3.10
+
+pages:
+  script:
+    - pip install flask
+    - python app.py &
+    - mkdir public
+    - cp -r * public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+Push changes to main branch:
+git add .
+git commit -m "Add GitLab Pages deployment"
+git push origin main
+Go to Settings → Pages in your GitLab project to get your live URL (e.g., https://your-username.gitlab.io/pharmacy-tech-flashcards).
+Editing Flashcards
+
+Edit pharmacy_flashcards.csv (in Excel, Google Sheets, or text editor).
+Format:
+Question,Answer,Details
+What is the generic name of Tylenol?,Acetaminophen,Acetaminophen is a common pain reliever and fever reducer.
+Save and restart the app (or redeploy if hosted).
+Project Structure
+
+pharmacy-tech-flashcards/
+│
+├── app.py                   # Flask app
+├── pharmacy_flashcards.csv  # Flashcards (Q/A/Details)
+├── templates/
+│   └── card.html            # HTML template
+├── Dockerfile               # For Docker builds
+└── .gitlab-ci.yml           # For GitLab Pages deployment
+Stopping the App
+
+Locally: press CTRL + C.
+Docker: find container ID using docker ps then stop it:
+docker stop <container_id>
+Contributing
+
+Add new flashcards to the CSV.
+Improve web UI or add quiz scoring.
+Pull requests welcome!
+License
+
+MIT License – free to use and modify.
+
+
+---
+
+### What I can provide next:
+- **Dockerfile** (so the app can actually build/run in Docker).  
+- **Ready-to-go `.gitlab-ci.yml`** so you just push and it deploys.  
+- **A version of `app.py` that doesn’t run in debug mode** (for hosting).  
+
+Would you like me to **bundle these files for you now** so you can just drop them into your project and push to GitLab?  
+Or should I **create the whole folder structure as a ZIP** so you can upload it directly?
